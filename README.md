@@ -58,7 +58,7 @@ git clone https://github.com/fathmamehnoor/PreViz.git
 cd "$env:APPDATA\Blender Foundation\Blender\5.0\scripts\addons"
 git clone https://github.com/fathmamehnoor/PreViz.git
 ```
-Replace 4.0 with your installed Blender version if needed.
+Replace 5.0 with your installed Blender version if needed.
 
 ### 3. Install Project Dependencies
 PreViz requires a small number of external Python libraries (`requests`, `python-dotenv`).
