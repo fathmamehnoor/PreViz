@@ -1,7 +1,6 @@
 # PreViz — FIBO-Powered AI Previsualization for Blender
 
-**PreViz** s a Blender add-on that transforms cinematic text into physically rigged 3D scenes using Bria’s FIBO model.
-It enables directors, filmmakers, and 3D artists to rapidly previsualize shots by converting natural language into structured scene state. Cameras, lighting, backgrounds, and foreground elements are generated and controlled through a JSON-native, agentic workflow rather than one-off image generation.
+**PreViz** is a Blender add-on that transforms cinematic text into physically rigged 3D scenes using Bria’s FIBO model and its JSON-native structured prompting. It enables directors, filmmakers, and 3D artists to rapidly previsualize shots by converting natural language into structured scene state. Cameras, lighting, backgrounds, and foreground elements are generated and controlled through a JSON-native, agentic workflow rather than one-off image generation.
 
 PreViz is designed for speed, control, and iteration, bridging the gap between generative AI and real production workflows.
 
@@ -27,7 +26,7 @@ PreViz is designed for speed, control, and iteration, bridging the gap between g
 
 ## Installation
 
-### Install Blender
+### 1. Install Blender
 
 PreViz is a Blender add-on, so Blender must be installed first.
 
@@ -38,30 +37,7 @@ Install Blender 4.x (recommended and tested)
 
 Launch Blender once to ensure it initializes its configuration folders
 
-### 2. Install Project Dependencies
-This add-on requires external Python libraries (`requests`, `python-dotenv`). You must install these into Blender's bundled Python environment.
-
-**Linux / macOS:**
-Open your terminal and run:
-```bash
-# Locate your Blender python executable (example path)
-# /path/to/blender/3.x/python/bin/python3.10
-
-# run pip install
-/path/to/blender/python/bin/python3.10 -m pip install -r requirements.txt
-```
-
-**Windows:**
-Open PowerShell as Administrator:
-```powershell
-# Locate your Blender python executable (example path)
-# C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe
-
-# run pip install
-& "C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe" -m pip install -r requirements.txt
-```
-
-### 3. Clone the Repository into Blender’s Add-ons Directory
+### 2. Clone the Repository into Blender’s Add-ons Directory
 
 PreViz must be placed inside Blender’s add-on folder so it can be detected automatically.
 
@@ -83,6 +59,36 @@ cd "$env:APPDATA\Blender Foundation\Blender\4.0\scripts\addons"
 git clone https://github.com/fathmamehnoor/PreViz.git
 ```
 Replace 4.0 with your installed Blender version if needed.
+
+### 3. Install Project Dependencies
+This add-on requires external Python libraries (`requests`, `python-dotenv`). You must install these into Blender's bundled Python environment.
+
+First, change into the add-on directory:
+```sh
+cd PreViz
+```
+Then install the dependencies using Blender’s Python executable.
+**Linux / macOS:**
+In your terminal run:
+```bash
+# Locate your Blender python executable (example path)
+# /path/to/blender/3.x/python/bin/python3.10
+
+# run pip install
+/path/to/blender/python/bin/python3.10 -m pip install -r requirements.txt
+```
+
+**Windows:**
+Open PowerShell as Administrator:
+```powershell
+# Locate your Blender python executable (example path)
+# C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe
+
+# run pip install
+& "C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe" -m pip install -r requirements.txt
+```
+
+
 ### 4. Configure API Key
 1. Rename `.env.example` (if provided) to `.env` in the project root.
 2. Open `.env` and add your Bria API Key:
