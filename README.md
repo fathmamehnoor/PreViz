@@ -33,7 +33,7 @@ PreViz is a Blender add-on, so Blender must be installed first.
 Download Blender from the official site:
 [Blender](https://www.blender.org/download/)
 
-Install Blender 4.x (recommended and tested)
+Install Blender 5.x (recommended and tested)
 
 Launch Blender once to ensure it initializes its configuration folders
 
@@ -43,64 +43,122 @@ PreViz must be placed inside Blender’s add-on folder so it can be detected aut
 
 **Linux**
 ```sh
-cd ~/.config/blender/4.0/scripts/addons
+cd ~/.config/blender/5.0/scripts/addons
 git clone https://github.com/fathmamehnoor/PreViz.git
 ```
 
 **macOS**
 ```sh
-cd ~/Library/Application\ Support/Blender/4.0/scripts/addons
+cd ~/Library/Application\ Support/Blender/5.0/scripts/addons
 git clone https://github.com/fathmamehnoor/PreViz.git
 ```
 
 **Windows**
 ```sh
-cd "$env:APPDATA\Blender Foundation\Blender\4.0\scripts\addons"
+cd "$env:APPDATA\Blender Foundation\Blender\5.0\scripts\addons"
 git clone https://github.com/fathmamehnoor/PreViz.git
 ```
 Replace 4.0 with your installed Blender version if needed.
 
 ### 3. Install Project Dependencies
-This add-on requires external Python libraries (`requests`, `python-dotenv`). You must install these into Blender's bundled Python environment.
+PreViz requires a small number of external Python libraries (`requests`, `python-dotenv`).
+These libraries must be installed into **Blender’s bundled Python**, not your system Python.
+
+Because Blender’s installation path varies by system, the safest way to locate Blender’s Python executable is to ask Blender directly.
 
 First, change into the add-on directory:
-```sh
-cd PreViz
-```
-Then install the dependencies using Blender’s Python executable.
-**Linux / macOS:**
-In your terminal run:
+
 ```bash
-# Locate your Blender python executable (example path)
-# /path/to/blender/3.x/python/bin/python3.10
-
-# run pip install
-/path/to/blender/python/bin/python3.10 -m pip install -r requirements.txt
+cd ~/.config/blender/5.0/scripts/addons/PreViz
 ```
 
-**Windows:**
-Open PowerShell as Administrator:
+Replace `5.0` with your installed Blender version if needed.
+
+#### Find Blender’s Python executable
+
+Run the following command in your terminal:
+
+```bash
+blender --python-expr "import sys; print(sys.executable)"
+```
+
+This will print the exact path to Blender’s bundled Python.
+Example output:
+
+```
+/usr/lib/blender/5.0/python/bin/python3.11
+```
+
+#### Install dependencies using Blender’s Python
+
+Use the path printed above to install the dependencies.
+
+**Linux / macOS**
+
+```bash
+/usr/lib/blender/5.0/python/bin/python3.11 -m pip install -r requirements.txt
+```
+
+**Windows (PowerShell as Administrator)**
+
+First, find Blender’s Python:
+
+```bash
+blender --python-expr "import sys; print(sys.executable)"
+```
+
+Then run:
+
 ```powershell
-# Locate your Blender python executable (example path)
-# C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe
-
-# run pip install
-& "C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe" -m pip install -r requirements.txt
+& "C:\Path\To\Blender\python\bin\python.exe" -m pip install -r requirements.txt
 ```
 
 
-### 4. Configure API Key
-1. Rename `.env.example` (if provided) to `.env` in the project root.
-2. Open `.env` and add your Bria API Key:
-   ```env
-   BRIA_API_KEY=your_actual_api_key_here
-   ```
+### 4. Configure Bria FIBO API Key
+
+PreViz uses a `.env` file to store your Bria API key.
+This file lives inside Blender’s add-ons directory, which may be hidden by default.
+
+#### Rename `.env.example` → `.env`
+
+**Option 1: Using the terminal (recommended, simplest)**
+
+Make sure you’re inside the PreViz directory:
+
+```bash
+cd ~/.config/blender/5.0/scripts/addons/PreViz
+```
+
+Then run:
+
+```bash
+mv .env.example .env
+```
+
+That’s it. The file is now renamed.
+
+**Step 2: Open the `.env` file and add your API key**
+
+You can open the file using any text editor.
+
+**Using terminal**
+
+```bash
+nano .env
+```
+
+Add your key:
+
+```env
+BRIA_API_KEY=your_actual_api_key_here
+```
+
+Press `Ctrl + O` to save, then `Ctrl + X` to exit.
 
 ### 5. Install Add-on in Blender
 1. Open Blender.
-2. Go to **Edit > Preferences > Add-ons**.
-3. Click **Install...** and select the `__init__.py` file (or the zipped folder of the project).
-4. Enable the add-on by checking the box next to **PreViz**.
+2. Go to **Edit > Preferences > Add-ons**
+3. Enable the add-on by checking the box next to **PreViz**.
 
 ---
 
